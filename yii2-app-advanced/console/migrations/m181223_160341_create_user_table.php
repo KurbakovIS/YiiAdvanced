@@ -3,7 +3,7 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `user`.
+ * Handles the creation of table `tasks`.
  */
 class m181223_160341_create_user_table extends Migration
 {
@@ -28,6 +28,6 @@ class m181223_160341_create_user_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('user');
+        $this->dropTable('tasks');
     }
 }

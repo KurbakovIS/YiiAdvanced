@@ -5,7 +5,7 @@ use \yii\helpers\Url;
 use \yii\helpers\Html;
 
 //var_dump($model->taskComments);
-//\app\assets\CalendarAsset::register($this);
+\frontend\assets\CalendarAsset::register($this);
 ?>
 
 <div class="taskCustom">

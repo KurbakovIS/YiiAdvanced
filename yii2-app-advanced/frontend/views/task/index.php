@@ -15,14 +15,13 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 </div>
 <?
-$model = \app\models\Tasks::findOne(1);
+$model = \common\models\tables\Tasks::findOne(1);
 
 echo
-
 \yii\widgets\ListView::widget([
     'dataProvider' => $dataProvider,
     'itemView' => function ($model) {
-        return \app\widgets\TaskWidget::widget([
+        return \frontend\widgets\TaskWidget::widget([
             'model' => $model
         ]);
     },
