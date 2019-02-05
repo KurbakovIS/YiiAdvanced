@@ -1,0 +1,10 @@
+suite_namespace: frontend\tests\acceptance
+actor: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+            url: http://frontend:81/
+            browser: chrome
+            port: 9515
+        - Yii2:
+            part: init
