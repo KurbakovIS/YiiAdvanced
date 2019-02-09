@@ -11,6 +11,7 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
 AppAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -40,17 +41,17 @@ AppAsset::register($this);
         ['label' => 'Task', 'url' => ['/task']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'Cabinet', 'url' => ['/cabinet']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Cabinet', 'url' => ['/cabinet']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
+                ['class' => '  btn-link ']
             )
             . Html::endForm()
             . '</li>';

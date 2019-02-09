@@ -1,0 +1,17 @@
+{
+  "name": "posi_/test",
+  "authors": [
+    {
+      "name": "Ilia Kurbakov",
+      "email": "kurbakovila@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "app\\": ""
+    }
+  },
+  "require": {
+    "cboden/ratchet": "^0.4.1"
+  }
+}
