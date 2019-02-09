@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 
+use common\models\tables\Chat;
 use frontend\models\forms\TaskAttachmentsAddForm;
 use common\models\tables\TaskComments;
 use common\models\tables\Tasks;
@@ -53,7 +54,9 @@ class TaskController extends Controller
             'statusesList' => TaskStatus::getList(),
             'userId' => Yii::$app->user->id,
             'taskComments' => new TaskComments(),
-            'taskAttachmentForm' => new TaskAttachmentsAddForm()
+            'taskAttachmentForm' => new TaskAttachmentsAddForm(),
+            'chat' => new Chat(),
+            'messageTask' => Chat::find()->where(['id_Task' => Tasks::findOne($id)])
         ]);
     }
 
