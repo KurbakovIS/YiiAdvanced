@@ -2,7 +2,6 @@
 
 namespace common\models\tables;
 
-use Yii;
 
 /**
  * This is the model class for table "chat".

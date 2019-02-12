@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1bd70830-8bd7-4453-af6a-c3082ec5ce3d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../yii2-app-advanced/console/components/Chat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yii2-app-advanced/console/controllers/ServerController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yii2-app-advanced/console/controllers/server.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../yii2-app-advanced/frontend/web/js/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yii2-app-advanced/backend/config/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/../yii2-app-advanced/backend/config/main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yii2-app-advanced/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../yii2-app-advanced/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yii2-app-advanced/frontend/assets/AppAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/../yii2-app-advanced/frontend/assets/AppAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yii2-app-advanced/frontend/controllers/TaskController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../yii2-app-advanced/frontend/controllers/TaskController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yii2-app-advanced/frontend/views/task/one.php" beforeDir="false" afterPath="$PROJECT_DIR$/../yii2-app-advanced/frontend/views/task/one.php" afterDir="false" />
-    </list>
+    <list default="true" id="1bd70830-8bd7-4453-af6a-c3082ec5ce3d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -78,30 +78,17 @@ use \yii\helpers\Html;
             Чат
         </div>
         <div class="card-content">
-<!--            --><?php //$form = ActiveForm::begin([
-//                    'action' => Url::to(['chat/add-message']),
-//                    'options' => ['id' => "chat_form"]
-//            ]); ?>
-            <form action="" name="chat_form" id="chat_form">
+            <form action="#" name="chat_form" id="chat_form">
                 <label>
+                    <input type="hidden" name="id_Task" value="<?= $model->id ?>">
+                    <input type="hidden" name="id_User" value="<?= $userId ?>">
                     Введите сообщение
                     <input type="text" name="message">
                     <input type="submit">
                 </label>
-<!--            --><?//= $form->field($chat, 'id_User')->hiddenInput(['value' => $userId])
-//                ->label(false); ?>
-<!--            --><?//= $form->field($chat, 'id_Task')->hiddenInput(['value' => $model->id])
-//                ->label(false); ?>
-<!--            --><?//= $form->field($chat, 'message')->textInput(); ?>
-<!--            --><?//= Html::submitButton("Добавить", ['class' => 'btn btn-success']) ?>
             </form>
-<!--            --><?php //ActiveForm::end() ?>
             <hr>
-            <div id="root_chat">
-<!--                --><?// foreach ($messageTask as $message): ?>
-<!--                   <p><b>--><?//= $message->id_task ?><!-- </b> --><?//=  $message->message?><!--  </p>-->
-<!--                --><?// endforeach; ?>
-            </div>
+            <div id="root_chat"></div>
         </div>
     </div>
 </div>

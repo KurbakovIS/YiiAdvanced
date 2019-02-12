@@ -1,21 +1,21 @@
 if (!window.WebSocket) {
     alert("Ваш браузер стар");
 }
-var taskId = window.location.search.split('&')[0].split('%')[1].split('F')[0];
-var userId = window.location.search.split('&')[1].split('=')[1];
-var dateTime = new Date();
-var xhr = new XMLHttpRequest();
+var taskId = window.location.search.split('&')[1].split('=')[1];
+// var dateTime = new Date();
+// var xhr = new XMLHttpRequest();
+//
+// dateTime.toLocaleString();
 
-dateTime.toLocaleString();
-
-var webSocket = new WebSocket("ws://localhost:8080");
+var webSocket = new WebSocket('ws://localhost:8080/?id_Task=' + taskId);
 
 document.getElementById('chat_form').addEventListener('submit', function (e) {
-    var textMessage = this.message.value;
-    webSocket.send('{"message":"' + textMessage + '",' +
-        ' "id_User":"' + userId + '",' +
-        '"id_Task":"' + taskId + '",' +
-        '"timeMessage":"' + dateTime.toLocaleString() + '"}');
+    var data = {
+        message: this.message.value,
+        id_Task: this.id_Task.value,
+        id_User: this.id_User.value,
+    };
+    webSocket.send(JSON.stringify(data));
     e.preventDefault();
     return false;
 });
