@@ -2,7 +2,6 @@
 
 namespace common\models\tables;
 
-//use app\behaviors\MyBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;

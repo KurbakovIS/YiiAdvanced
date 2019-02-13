@@ -3,6 +3,7 @@
 use \yii\widgets\ActiveForm;
 use \yii\helpers\Url;
 use \yii\helpers\Html;
+use yii\widgets\Pjax;
 
 //var_dump($model->taskComments);
 \frontend\assets\CalendarAsset::register($this);
@@ -57,7 +58,10 @@ use \yii\helpers\Html;
     <div class="taskComments">
         <div class="comments">
             <h3>Комментарии</h3>
-            <?php $form = ActiveForm::begin(['action' => Url::to(['task/add-comment'])]); ?>
+            <?php Pjax::begin(); ?>
+            <?php $form = ActiveForm::begin([
+                'options' => ['data' => ['pjax' => true]],
+                'action' => Url::to(['task/add-comment', 'id' => $model->id])]); ?>
             <?= $form->field($taskComments, 'user_id')->hiddenInput(['value' => $userId])
                 ->label(false); ?>
             <?= $form->field($taskComments, 'task_id')->hiddenInput(['value' => $model->id])
@@ -65,12 +69,14 @@ use \yii\helpers\Html;
             <?= $form->field($taskComments, 'content')->textInput(); ?>
             <?= Html::submitButton("Добавить", ['class' => 'btn btn-success']) ?>
             <?php ActiveForm::end() ?>
+
             <hr>
             <div class="commentHistory">
                 <? foreach ($model->taskComments as $comment): ?>
-                    <p><b><?= $comment->user->login ?></b> <?= $comment->content ?></p>
+                    <p><b><?= $comment->user->username ?></b> <?= $comment->content ?></p>
                 <? endforeach; ?>
             </div>
+            <?php Pjax::end(); ?>
         </div>
     </div>
     <div class="card">

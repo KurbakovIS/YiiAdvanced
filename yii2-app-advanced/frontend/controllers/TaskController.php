@@ -16,7 +16,6 @@ use common\models\tables\TaskStatus;
 use common\models\tables\Users;
 use Yii;
 use yii\data\ActiveDataProvider;
-use yii\db\Expression;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 
@@ -39,7 +38,6 @@ class TaskController extends Controller
             ]);
         }
 
-
         return $this->render('index', [
             'dataProvider' => $dataProvider
         ]);
@@ -57,7 +55,6 @@ class TaskController extends Controller
             'taskAttachmentForm' => new TaskAttachmentsAddForm(),
         ]);
     }
-
 
     public function actionCreate()
     {
@@ -85,15 +82,23 @@ class TaskController extends Controller
         $this->redirect(Yii::$app->request->referrer);
     }
 
-    public function actionAddComment()
+    public function actionAddComment($id)
     {
         $model = new TaskComments();
+        $request = Yii::$app->request;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', "комментарий добавлен");
         } else {
             Yii::$app->session->setFlash('error', 'Не удалось добавить комментарий');
         }
-        $this->redirect(Yii::$app->request->referrer);
+        return $this->render('one', [
+            'model' =>  Tasks::findOne($id),
+            'userList' => Users::getUsersList(),
+            'statusesList' => TaskStatus::getList(),
+            'userId' => Yii::$app->user->id,
+            'taskComments' => new TaskComments(),
+            'taskAttachmentForm' => new TaskAttachmentsAddForm(),
+        ]);
     }
 
     public function actionAddAttachment()

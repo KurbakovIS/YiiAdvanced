@@ -2,10 +2,6 @@ if (!window.WebSocket) {
     alert("Ваш браузер стар");
 }
 var taskId = window.location.search.split('&')[1].split('=')[1];
-// var dateTime = new Date();
-// var xhr = new XMLHttpRequest();
-//
-// dateTime.toLocaleString();
 
 var webSocket = new WebSocket('ws://localhost:8080/?id_Task=' + taskId);
 

@@ -2,10 +2,11 @@
 
 namespace console\components;
 
+use common\models\tables\Tasks;
+use common\models\tables\Users;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use common\models\tables\Chat as MyChat;
-use Yii;
 
 class Chat implements MessageComponentInterface
 {
@@ -22,11 +23,11 @@ class Chat implements MessageComponentInterface
         $id_Task = explode("=", $queryString)[1];
         try {
             $this->clients[$id_Task][$conn->resourceId] = $conn;
-//            var_dump($conn->resourceId);
+//            $allMessage = MyChat::find()->where(['<','timeMessage','2019-02-13 01:00:43'])->all();
+//            var_dump($allMessage->message);
         } catch (\Exception $e) {
             $e->getMessage();
         }
-
         echo "New connection : {$conn->resourceId}\n";
     }
 
@@ -35,11 +36,9 @@ class Chat implements MessageComponentInterface
         echo "user : {$conn->resourceId} disconect!\n";
     }
 
-
     function onError(ConnectionInterface $conn, \Exception $e)
     {
         echo "\n conn : {$conn->resourceId}closed with error\n";
-
         $conn->close();
     }
 
@@ -49,14 +48,14 @@ class Chat implements MessageComponentInterface
 
         $data = json_decode($msg, true);
         $id_Task = $data['id_Task'];
+        $userlogin = Users::findOne($data['id_User']);
         try {
             (new MyChat($data))->save();
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }
-//        var_dump($this->clients[$id_Task]);
         foreach ($this->clients[$id_Task] as $client) {
-            $client->send($data['message']);
+            $client->send($userlogin->username . ': ' . $data['message']);
         }
     }
 }
