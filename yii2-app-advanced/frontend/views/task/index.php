@@ -15,7 +15,6 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 </div>
 <?
-$model = \common\models\tables\Tasks::findOne(1);
 
 echo
 \yii\widgets\ListView::widget([

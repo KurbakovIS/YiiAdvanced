@@ -24,7 +24,8 @@
         "aki/yii2-vue": "^0.5.1",
         "macgyer/yii2-materializecss": "^3.0",
         "bower-asset/jquery": "^3.3",
-        "cboden/ratchet": "^0.4.1"
+        "cboden/ratchet": "^0.4.1",
+        "sonko-dmitry/yii2-telegram-bot-api": "^1.0"
 
     },
     "require-dev": {

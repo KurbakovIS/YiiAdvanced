@@ -55,6 +55,7 @@ class Tasks extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['description'], 'string'],
             [['responsible_id'], 'integer'],
+            [['id_project'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -70,6 +71,7 @@ class Tasks extends \yii\db\ActiveRecord
             'date' => 'Date',
             'description' => 'Description',
             'responsible_id' => 'Responsible ID',
+            'id_project' => 'ID Project',
         ];
     }
 

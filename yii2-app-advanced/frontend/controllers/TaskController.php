@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 
+use common\models\tables\TaskProject;
 use frontend\models\forms\TaskAttachmentsAddForm;
 use common\models\tables\TaskComments;
 use common\models\tables\Tasks;
@@ -61,12 +62,13 @@ class TaskController extends Controller
         $model = new Tasks();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['project/index']);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'usersList' => Users::getUsersList()
+            'usersList' => Users::getUsersList(),
+            'projectsList'=>TaskProject::getProjectList()
         ]);
     }
 
