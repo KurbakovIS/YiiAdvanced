@@ -4,7 +4,9 @@ namespace common\models\tables;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "users".
@@ -16,7 +18,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property Tasks $id0
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends ActiveRecord implements IdentityInterface
 {
     const SCENARIO_AUTH = 'auth';
 
@@ -107,4 +109,28 @@ class Users extends \yii\db\ActiveRecord
 
         return ArrayHelper::map($users, 'id', 'username');
     }
+
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
+
 }

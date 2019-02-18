@@ -97,5 +97,15 @@ class Tasks extends \yii\db\ActiveRecord
         return $this->hasOne(TaskStatus::class, ['id' => 'status']);
     }
 
+//    public function fields()
+//    {
+//        return [
+//            'name'
+//        ];
+//    }
 
+    public function extraFields()
+    {
+        return ['responsible'];
+    }
 }

@@ -23,7 +23,9 @@ class m190216_164026_create_task_project_table extends Migration
         ]);
         $taskTable = 'tasks';
         $userTable = 'users';
+
         $this->addColumn($taskTable, 'id_project', $this->integer());
+        $this->addColumn($userTable, 'access_token', $this->string());
 
         $this->addForeignKey('fk_task_project', $this->tableName, 'id', $taskTable,
             'id_project');
