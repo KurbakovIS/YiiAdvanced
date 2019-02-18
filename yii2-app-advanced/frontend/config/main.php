@@ -14,12 +14,15 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'parser' => [
+                'application/json' => \yii\web\JsonParser::class
+            ],
             'cookieValidationKey' => $params['cookieValidationKey'],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => 'identity', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
+            'identityCookie' => ['name' => '_identity', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -41,14 +44,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class'=>\yii\rest\UrlRule::class,'controller'=>['task']]
+//                'GET tasks' => 'task/index',
+//                'POST tasks' => 'task/create',
+//                'GET task/<id>' => 'task/one',
+//                'PATCH task/<id>' => 'task/update',
+//                'DELETE task/<id>' => 'task/delete',
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
