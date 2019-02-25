@@ -53,9 +53,13 @@ class Tasks extends \yii\db\ActiveRecord
         return [
             [['name', 'date'], 'required'],
             [['date'], 'safe'],
+            [['date_complite'], 'safe'],
+            [['dedline_date'], 'safe'],
             [['description'], 'string'],
+            [['administrator_id'], 'integer'],
             [['responsible_id'], 'integer'],
             [['id_project'], 'integer'],
+            [['status'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -69,9 +73,13 @@ class Tasks extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'name', //Yii::t('main','task_name'),
             'date' => 'Date',
+            'status'=>'Status',
             'description' => 'Description',
             'responsible_id' => 'Responsible ID',
             'id_project' => 'ID Project',
+            'dedline_date'=>'Dedline Date',
+            'administrator_id'=>'Administrator ID',
+            'date_complite'=>'Date Complite'
         ];
     }
 
@@ -81,6 +89,11 @@ class Tasks extends \yii\db\ActiveRecord
     public function getResponsible()
     {
         return $this->hasOne(Users::class, ['id' => 'responsible_id']);
+    }
+
+    public function getAdministrator()
+    {
+        return $this->hasOne(Users::class, ['id' => 'administrator_id']);
     }
 
     public function getTaskComments()

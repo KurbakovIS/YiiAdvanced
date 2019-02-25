@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton('Фильтр') ?>
     </div>
     <?php ActiveForm::end(); ?>
+
 </div>
 <?
 

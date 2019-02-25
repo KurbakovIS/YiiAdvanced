@@ -83,10 +83,16 @@ class Users extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(Tasks::class, ['responsible_id' => 'id']);
     }
+
+
 //    public function getRole()
 //    {
 //        return $this->hasOne(Roles::class, ['id' => 'role_id']);
 //    }
+    public function getUsername()
+    {
+        return \Yii::$app->user->identity->getId();
+    }
 
     public function fields()
     {

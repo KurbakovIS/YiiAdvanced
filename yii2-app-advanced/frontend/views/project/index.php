@@ -23,7 +23,9 @@ ListView::widget([
         ]);
     },
     'summary' => false,
-
+    'options' => [
+        'class' => 'taskConteiner'
+    ]
 ]);
 
 ?>

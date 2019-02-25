@@ -10,7 +10,7 @@ use yii\helpers\Url; ?>
 
 <div class="taskConteiner">
     <a href="<?= Url::to(['project/one', 'id' => $model->id]) ?>">
-        <div class=" card">
+        <div class=" card" style="padding: 15px">
             <div class="card-title center">
                 <h3>Название проекта</h3>
                 <h4> <?= $model->name_project ?></h4>

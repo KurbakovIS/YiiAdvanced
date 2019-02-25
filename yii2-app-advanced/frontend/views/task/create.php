@@ -21,10 +21,15 @@ use yii\widgets\ActiveForm;
         'language' => 'ru',
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
+    <?= $form->field($model, 'dedline_date')->widget(\yii\jui\DatePicker::class,[
+        'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'responsible_id')->dropDownList($usersList) ?>
+    <?= $form->field($model, 'administrator')->dropDownList($usersList) ?>
     <?= $form->field($model, 'id_project')->dropDownList($projectsList) ?>
 
     <div class="form-group">

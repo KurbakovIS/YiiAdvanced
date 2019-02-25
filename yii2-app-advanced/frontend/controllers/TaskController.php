@@ -27,7 +27,6 @@ class TaskController extends Controller
     {
 
         $month = Yii::$app->request->get('month');
-
         if ($month) {
             $dataProvider = new ActiveDataProvider([
                 'query' => Tasks::find()
@@ -68,7 +67,8 @@ class TaskController extends Controller
         return $this->render('create', [
             'model' => $model,
             'usersList' => Users::getUsersList(),
-            'projectsList'=>TaskProject::getProjectList()
+            'projectsList' => TaskProject::getProjectList(),
+            'administrator' => Users::getUsersList(),
         ]);
     }
 
@@ -76,6 +76,11 @@ class TaskController extends Controller
     {
         if ($model = Tasks::findOne($id)) {
             $model->load(Yii::$app->request->post());
+            if ($model->status == 3) {
+                $model->date_complite = date('Y-m-d');
+            } else {
+                $model->date_complite = NULL;
+            }
             $model->save();
             Yii::$app->session->setFlash('success', "Изменения сохранены");
         } else {
@@ -94,7 +99,7 @@ class TaskController extends Controller
             Yii::$app->session->setFlash('error', 'Не удалось добавить комментарий');
         }
         return $this->render('one', [
-            'model' =>  Tasks::findOne($id),
+            'model' => Tasks::findOne($id),
             'userList' => Users::getUsersList(),
             'statusesList' => TaskStatus::getList(),
             'userId' => Yii::$app->user->id,
