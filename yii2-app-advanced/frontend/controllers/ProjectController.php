@@ -46,10 +46,35 @@ class ProjectController extends Controller
 
     public function actionOne($id)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Tasks::find()
-                ->where(['id_project' => $id])
-        ]);
+
+        $month = Yii::$app->request->get('month');
+        $filter = Yii::$app->request->get('filter');
+
+
+        if ($month) {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Tasks::find()
+                    ->where(['id_project' => $id])
+                    ->andWhere(['MONTH(date)' => $month])
+            ]);
+        } elseif ($filter == 'deadline') {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Tasks::find()
+                    ->where(['id_project' => $id])
+                    ->andWhere(['<', 'dedline_date', date('Y-m-d')])
+            ]);
+        }elseif ($filter == 'last7day') {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Tasks::find()
+                    ->where(['id_project' => $id])
+                    ->andWhere('date_complite >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)')
+            ]);
+        }  else {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Tasks::find()
+                    ->where(['id_project' => $id])
+            ]);
+        }
 
         return $this->render('one',
             [
