@@ -10,7 +10,7 @@ use yii\helpers\Url;
 use yii\widgets\ListView; ?>
 
 
-<a href="<?= Url::to(['project/create']) ?>" class="waves-effect waves-light btn">Создать новый проект</a>
+<a href="<?= Url::to(['project/create']) ?>" class="waves-effect waves-light btn" style="margin: 20px">Создать новый проект</a>
 
 <?
 

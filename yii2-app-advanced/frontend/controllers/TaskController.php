@@ -27,12 +27,23 @@ class TaskController extends Controller
     {
 
         $month = Yii::$app->request->get('month');
+        $filter = Yii::$app->request->get('filter');
         if ($month) {
             $dataProvider = new ActiveDataProvider([
                 'query' => Tasks::find()
                     ->where(['MONTH(date)' => $month])
             ]);
-        } else {
+        } elseif ($filter == 'deadline') {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Tasks::find()
+                    ->where(['<', 'dedline_date', date('Y-m-d')])
+            ]);
+        }elseif ($filter == 'last7day') {
+            $dataProvider = new ActiveDataProvider([
+                'query' => Tasks::find()
+                    ->where('date_complite >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)')
+            ]);
+        }  else {
             $dataProvider = new ActiveDataProvider([
                 'query' => Tasks::find()
             ]);
