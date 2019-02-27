@@ -33,6 +33,7 @@ class TaskProject extends \yii\db\ActiveRecord
     {
         return [
             [['author_user'], 'integer'],
+            [['id_team'], 'integer'],
             [['description'], 'string'],
             [['name_project'], 'string', 'max' => 255],
             [['name_author'], 'string', 'max' => 255],
@@ -51,6 +52,7 @@ class TaskProject extends \yii\db\ActiveRecord
             'author_user' => 'Author User',
             'description' => 'Description',
             'name_author' => 'Name Author',
+            'id_team' => 'ID Team',
         ];
     }
 
@@ -70,6 +72,11 @@ class TaskProject extends \yii\db\ActiveRecord
         return $this->hasMany(Tasks::className(), ['id_project' => 'id']);
     }
 
+    public  function getTeam()
+    {
+        return $this->hasMany(Teams::className(), ['id' => 'id_team']);
+    }
+
     public static function getProjectList()
     {
         $projects = static::find()
@@ -79,4 +86,14 @@ class TaskProject extends \yii\db\ActiveRecord
 
         return ArrayHelper::map($projects, 'id', 'name_project');
     }
+
+//    public static function getProject($id)
+//    {
+//        $projects = static::find($id)
+//            ->select(['id', 'name_project'])
+//            ->asArray()
+//            ->all();
+//
+//        return ArrayHelper::map($projects, 'id', 'name_project');
+//    }
 }

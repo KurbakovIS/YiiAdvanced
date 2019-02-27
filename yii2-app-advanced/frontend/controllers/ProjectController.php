@@ -11,9 +11,12 @@ namespace frontend\controllers;
 
 use common\models\tables\TaskProject;
 use common\models\tables\Tasks;
+use common\models\tables\TeamProject;
+use common\models\tables\Teams;
 use common\models\tables\Users;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 class ProjectController extends Controller
@@ -44,6 +47,28 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function actionParticipant($id)
+    {
+        return $this->render('participant', [
+            'model' => TaskProject::findOne($id),
+            'teamList'=>Teams::getTeamList()
+        ]);
+    }
+
+    public function actionSave($id)
+    {
+        $team = Yii::$app->request->post('TaskProject');
+        if ($model = TaskProject::findOne($id)) {
+//           var_dump($team['id_team']);
+            $model->id_team = $team['id_team'];
+            $model->save();
+            Yii::$app->session->setFlash('success', "Изменения сохранены");
+        } else {
+            Yii::$app->session->setFlash('error', 'Не удалось сохранить измнения');
+        }
+        $this->redirect(Yii::$app->request->referrer);
+    }
+
     public function actionOne($id)
     {
 
@@ -63,13 +88,13 @@ class ProjectController extends Controller
                     ->where(['id_project' => $id])
                     ->andWhere(['<', 'dedline_date', date('Y-m-d')])
             ]);
-        }elseif ($filter == 'last7day') {
+        } elseif ($filter == 'last7day') {
             $dataProvider = new ActiveDataProvider([
                 'query' => Tasks::find()
                     ->where(['id_project' => $id])
                     ->andWhere('date_complite >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)')
             ]);
-        }  else {
+        } else {
             $dataProvider = new ActiveDataProvider([
                 'query' => Tasks::find()
                     ->where(['id_project' => $id])
@@ -78,7 +103,8 @@ class ProjectController extends Controller
 
         return $this->render('one',
             [
-                'dataProvider' => $dataProvider
+                'dataProvider' => $dataProvider,
+                'id'=> $id
             ]
         );
     }

@@ -16,6 +16,9 @@ use yii\widgets\ListView;
     <div style="margin-left: 25px; display: flex;align-items: center; justify-content: space-between;align-items: start">
         <a class="btn btn-success" style="margin-top: 20px" href="<?= Url::to(['task/create']) ?>">Создать новую
             задачу</a>
+        <a href="<?= Url::to(['project/participant', 'id' => $id]) ?>" class="waves-effect waves-light btn"
+           style="margin: 20px">Добавить команду</a>
+
         <div>
             <h3>Фильтры</h3>
             <?php ActiveForm::begin(['method' => 'get']); ?>
